@@ -1,0 +1,101 @@
+<% layout("/layouts/boilerplate.ejs")-%>
+<body>
+    
+    <!-- <h2>WonderLust </h2> -->
+    <!-- <form  method="get" action="/listings/new">
+        <button>New Listing</button>
+    </form><br> -->
+    <div class="filters">
+        <div class="filter">
+            <div><i class="fa-solid fa-fire"></i></div>
+            <p>Trending</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-bed"></i></div>
+            <p>Rooms</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i></div>
+            <p>Iconic Cities</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain"></i></div>
+            <p>Mountains</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-brands fa-fort-awesome"></i></div>
+            <p>Castles</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-person-swimming"></i></div>
+            <p>Amazing Pools</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-campground"></i></div>
+            <p>Camping</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-tractor"></i></div>
+            <p>Farms</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-regular fa-snowflake"></i></div>
+            <p>Arcitic</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-ship"></i></div>
+            <p>HouseBoat</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-igloo"></i></div>
+            <p>Domes</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-table-tennis-paddle-ball"></i></div>
+            <p>Play</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-guitar"></i></div>
+            <p>Music</p>
+        </div>
+        <div class="tax-toggle ms-auto">
+            <div class="form-check form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                <label class="form-check-label" for="flexSwitchCheckChecked">Display total after taxes</label>
+              </div>
+        </div>
+    </div>
+    <div class="row row-cols-lg-3 row-cols-xl-4 row-cols-md-2 row-cols-sm-1 " >        
+
+        <%for(let list of listings){%>
+            <a href="/listings/<%=list._id%>">
+                <div class="card listing-card col">
+                   <img src="<%=list.image.url%>" class="card-img-top" alt="...">
+                   <div class="card-img-overlay">
+                   </div>
+                    <div class="card-body">
+                      <p class="card-text"><b><%=list.title%></b></p>
+                      <p> &#8377; <%=list.price.toLocaleString("en-IN")%> / night <i class="gst">&nbsp; &nbsp; +18% GST= <%=(list.price+(list.price*18/100)).toLocaleString("en-IN")%>/-</i></p>
+                      
+                    </div>
+                </div>
+            </a>
+        <%}%>       
+    </div>
+    <script>
+        let toggle=document.getElementById("flexSwitchCheckChecked");
+        toggle.addEventListener("click",()=>{
+            let gsts =document.querySelectorAll(".gst");
+            for(let gst of gsts){
+                if(gst.style.display!=="inline"){
+                    gst.style.display="inline"
+                }
+                else{
+                    gst.style.display="none";
+                }
+            }         
+        })
+    </script>
+</body>
+ 
+
