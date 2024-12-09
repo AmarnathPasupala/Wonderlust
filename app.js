@@ -1,9 +1,9 @@
-require('dotenv');
-// console.log(process.env);
+require('dotenv').config()
+// console.log(process.env)
 
 let express = require("express");
 let app=express();
-let port=8080;
+let port=process.env.PORT;
 const mongoose = require('mongoose');
 let path=require("path");
 let methodOverride=require("method-override");
@@ -35,7 +35,7 @@ main().then((res)=>{
      console.log(err)});
 
 async function main() {
-  await mongoose.connect(dbUrl,{ useNewUrlParser: true });
+  await mongoose.connect(dbUrl);
 }
 
 let store=MongoStore.create({
